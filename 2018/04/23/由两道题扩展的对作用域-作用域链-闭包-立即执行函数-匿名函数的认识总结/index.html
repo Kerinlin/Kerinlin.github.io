@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结 | 程序员成长记 | 记录成长的轨迹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"Kerinlin","repo":"git-comment","oauth":{"client_id":"0aa96b97b7762dde3151","client_secret":"4859e52ea910fa3b52ff03008b4907b80a5f453c"},"perPage":10}'),
+            d: JSON.parse('{"app_id":"1b1b7066"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">欧阳铖</h5>
+          <a href="mailto:1058789909@qq.com" title="1058789909@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>7</span>
+            
+              <span>8</span>
+            
+              <span>9</span>
+            
+              <span>9</span>
+            
+              <span>0</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/Kerinlin" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-23T06:13:06.000Z" itemprop="datePublished" class="page-time">
+  2018-04-23
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-23 14:13:06" datetime="2018-04-23T06:13:06.000Z"  itemprop="datePublished">2018-04-23</time>
+
+            
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学JS,前几天看到两道题,刚开始看懵懵懂懂,这几天通过各种查资料,慢慢的理解,顿悟了,对匿名函数,闭包,立即执行函数的理解也更深了一点,在此分享给大家我的理解与总结,希望能帮助大家理解.因为这篇文章是我用心总结的,查阅了很多的资料,所以总结的比较细,篇幅较长,如果没耐心,建议跳出,点个收藏,以后如果要用到,有耐心想看时,方便查阅.另外如果有啥错误,还望指正</p>
+<a id="more"></a>
+<hr>
+<h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> variate = i;</span><br><span class="line">            setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"setTimeout执行后:"</span> + variate);</span><br><span class="line">            &#125;, <span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">    fn();</span><br></pre></td></tr></table></figure>
+<p>最后结果是啥呢?</p>
+<figure class="image-box">
+                <img src="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/image26.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>结果是,先打印2,再打印2个1<br>为什么呢?<br>先来梳理下函数执行过程:</p>
+<ul>
+<li>首先for循环遍历i,(0,1)的时候分别将遍历值传给variate变量,variate变量最后保存的值为1</li>
+<li>当i值为2时,指针跳出循环,执行到打印i值这步,此时i=2</li>
+<li>执行函数fn(),执行完毕后,触发setTimeout事件,因为循环2次,而且最后保存在这个作用域中变量的值为1,所以最后输出2个1</li>
+<li>所以最后的打印的值为2,1,1</li>
+</ul>
+<p>分析完了,先不急,我们先来了解下setTimeout事件</p>
+<h2 id="setTimeout事件"><a href="#setTimeout事件" class="headerlink" title="setTimeout事件"></a>setTimeout事件</h2><ul>
+<li>setTimeout事件有两个参数:事件,时间开始执行时间</li>
+<li>setTimeout事件是异步的</li>
+<li>当调用setTimeout事件时，会把函数参数，放到事件队列中。<strong>等主程序运行完，再调用</strong></li>
+</ul>
+<p>理解这个后,答案就很容易得出了</p>
+<hr>
+<h2 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">               (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">var</span> variate = i;</span><br><span class="line">                   setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       alert(variate);</span><br><span class="line">                   &#125;, <span class="number">1000</span>);</span><br><span class="line">               &#125;)();</span><br><span class="line">                            </span><br><span class="line">           &#125;</span><br><span class="line">          <span class="built_in">console</span>.log(i);</span><br><span class="line">          <span class="built_in">console</span>.log(variate);</span><br><span class="line">       &#125;</span><br><span class="line">       fn();</span><br></pre></td></tr></table></figure>
+<p>先分析下<strong>整体结构</strong>:<br>函数体内包含一个for循环体,循环体内又包含一个匿名函数,形成闭包,加上两个小括号–&gt;(匿名函数)()形成立即执行函数</p>
+<p>再思考下函数执行过程</p>
+<ol>
+<li><p>i=0时,进入函数体内,因为是立即执行,所以i值进入匿名函数,通过作用域链,变量variate获得i值,匿名函数体内的setTimeout中的变量variate获得i值,第一轮循环结束;</p>
+</li>
+<li><p>i=1时,执行与1同样的过程;</p>
+</li>
+<li><p>i=2,跳出循环,打印i,variate;</p>
+</li>
+</ol>
+<p>结果是啥呢?</p>
+<figure class="image-box">
+                <img src="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/error.png" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>Excuse me?竟然有错误?</p>
+<figure class="image-box">
+                <img src="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/execuse.jpeg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>好,那就让我们来解决错误,错误显示variate is not defined,原来是这样,没定义,那分析一波,为什么会显示未定义呢?<br>首先我们看函数内部,内部已经定义了,所以我们想到作用域的问题</p>
+<h2 id="作用域和作用域链"><a href="#作用域和作用域链" class="headerlink" title="作用域和作用域链"></a>作用域和作用域链</h2><ul>
+<li><strong>作用域</strong></li>
+</ul>
+<p>变量和函数的访问区域,分<strong>全局作用域</strong>和<strong>函数作用域</strong>,在es6中添加let关键字后有了<strong>块级作用域</strong>概念.</p>
+<p><strong>变量提升</strong>: JS在解析代码前会先将所有函数体内的变量,提升至函数体顶端,来看个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Gscope = <span class="string">"global"</span>;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> Gscope;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是全局变量:"</span>+Gscope);<span class="comment">//这是全局变量:undefined</span></span><br><span class="line">            Lscope = <span class="string">"local"</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"这是局部变量"</span>+Lscope);<span class="comment">//这是局部变量local</span></span><br><span class="line">        &#125;  </span><br><span class="line">    t();</span><br></pre></td></tr></table></figure>
+<p>为什么第一个值为undefined?因为函数体内的Gscope变量被提升至函数体顶端,但是未赋值,so,undefined.</p>
+<p><strong>let关键字</strong>:let用于声明变量,但是let声明的变量只在let所在的代码块(块级作用域)有用,OK,show code</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> i = <span class="string">'a'</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(i);<span class="comment">//a a</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(i);<span class="comment">//i is not defined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>作用域链</strong></li>
+</ul>
+<p>什么是作用域链？有什么用途?怎么创建起来的?</p>
+<p>先引用一句高级程序设计里的话:</p>
+<blockquote>
+<p>作用域链本质上是一个指向变量对象的指针列表,它只引用但不实际包含变量对象</p>
+</blockquote>
+<p>我的理解是: </p>
+<p>作用域链就相当于是沟通执行环境内的各个变量与函数的桥梁,通过作用域链,同一执行环境里面的变量和函数都有权利访问对方;</p>
+<p>那<strong>不同的执行环境间</strong>是怎样的呢?</p>
+<p>不同执行环境间的交流还是通过桥梁(作用域链),但是现在桥梁变成单行道了,只能允许内部环境访问外部环境,但外部环境不能访问内部环境.内部环境通过桥梁能够向上搜索查询变量和函数,但外部却不能向下搜索进入另一个执行环境.理解这个后,出现题目二的问题,variate is not defined,就很容易理解了:</p>
+<p>因为他们两个压根不在同一个执行环境,而且,里面的变量对象通过闭包能够访问外部环境变量,但外部环境变量无权访问内部的变量variate.</p>
+<p>这时可能又蹦出一个问题了,”桥梁”(执行环境的作用域链)怎么搭建起来的呢?</p>
+<ol>
+<li>先创建一个预先包含全局变量对象的作用域链,保存在内部的[scope]属性中</li>
+<li>调用函数时,为函数搭建一个执行环境</li>
+<li>复制函数的[scope]中的对象构建起执行环境的作用域链</li>
+<li>创建活动对象,并将活动对象推入执行环境的前端</li>
+</ol>
+<p>分析完后,再重新阅读下作用域的概念,会发现很有道理!</p>
+<hr>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>首先提出几个问题:什么是闭包? 为什么要用它?它有啥缺点?怎么创建?</p>
+<p><strong>什么是闭包?</strong></p>
+<blockquote>
+<p>闭包是指有权访问另一个函数作用域中变量的函数</p>
+</blockquote>
+<p>先贴上刚刚那一段代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">               (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">var</span> variate = i;</span><br><span class="line">                   setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"setTimeout执行后:"</span>+variate);</span><br><span class="line">                   &#125;, <span class="number">1000</span>);</span><br><span class="line">               &#125;)();<span class="comment">//闭包,立即执行函数,匿名函数</span></span><br><span class="line">                            </span><br><span class="line">           &#125;</span><br><span class="line">          <span class="built_in">console</span>.log(i);<span class="comment">//2</span></span><br><span class="line">          <span class="built_in">console</span>.log(variate);<span class="comment">//variate is not defined</span></span><br><span class="line">       &#125;</span><br><span class="line">       fn();</span><br></pre></td></tr></table></figure>
+<p>通过定义可以知道,闭包本质还是作用域链的问题.<br>那为什么内部环境能访问外部环境呢?<br>那就先探讨下,函数调用时会发生什么吧!</p>
+<ol>
+<li>先创建执行环境和作用域链;</li>
+<li>初始化函数的活动对象(命名参数值,arguments);</li>
+<li>在作用链中搜索具有相应名字的变量,实现对变量的读取和写入;</li>
+<li>调用执行完毕,销毁局部活动对象,仅保存全局作用域.<br>所以关键还是内部函数作用域链将外部的活动对象添加到自己作用域中了</li>
+</ol>
+<p>这个例子中函数fn()内部嵌套了一个匿名函数形成闭包,内部的variate变量变为私有成员变量,所以外部无法访问,因而会报错variate is not defined</p>
+<p><strong>为什么用闭包?</strong></p>
+<ul>
+<li>因为在闭包内部保持了对外部活动对象的访问,但外部的变量却无法直接访问内部,避免了全局污染;</li>
+<li>可以当做私有成员,弥补了因js语法带来的面向对象编程的不足;</li>
+<li>可以长久的在内存中保存一个自己想要保存的变量.</li>
+</ul>
+<p><strong>闭包有啥缺点呢?</strong></p>
+<ol>
+<li>可能导致内存占用过多,因为闭包携带了自身的函数作用域</li>
+<li>闭包只能取得外部包含函数中得最后一个值</li>
+</ol>
+<p><strong>怎么创建闭包?</strong><br>在函数内部嵌套使用函数</p>
+<hr>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p><strong>什么是匿名函数?</strong><br>顾名思义,就是没有名字的函数<br>如例子中的代码就是一个匿名函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">var</span> variate = i;</span><br><span class="line">                   setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                       <span class="built_in">console</span>.log(<span class="string">"setTimeout执行后:"</span>+variate);</span><br><span class="line">                   &#125;, <span class="number">1000</span>);</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>匿名函数优缺点?</strong><br>优点:可以通过var关键字创建函数表达式,函数表达式不会出现变量提升的情况,只有在真正被解释执行的时候才会执行到函数表达式所在的代码行,有效避免了全局污染;</p>
+<p>缺点:匿名函数绑定的事件不能解绑</p>
+<hr>
+<h2 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h2><p>什么是立即执行函数?有什么作用?</p>
+<p><strong>什么是立即执行函数?</strong></p>
+<p>声明一个匿名函数,并且马上调用它{通过加()的形式}</p>
+<p>立即执行函数的<strong>形式</strong></p>
+<p><strong>(匿名函数)();</strong></p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">function</span> () &#123;</span><br><span class="line">                  var variate = i;</span><br><span class="line">                  setTimeout(<span class="name">function</span> () &#123;</span><br><span class="line">                      console.log(<span class="string">"setTimeout执行后:"</span>+variate)<span class="comment">;</span></span><br><span class="line">                  &#125;, <span class="number">1000</span>)<span class="comment">;</span></span><br><span class="line">              &#125;)()</span><br></pre></td></tr></table></figure>
+<p>为什么要用小括号将匿名函数包裹起来?</p>
+<p>为了通过浏览器的语法检查</p>
+<p>作用?<br>创建一个独立的作用域,避免全局污染</p>
+<hr>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>通过两道题扩展出来知识点,并且总结出来,现在对知识点的基础概念,以及一些实现原理有了很清晰的认识,这种感觉很棒</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-04-23T06:28:43.502Z" itemprop="dateUpdated">2018-04-23 14:28:43</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/" target="_blank" rel="external">http://yoursite.com/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="欧阳铖">
+            欧阳铖
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/&title=《由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/&title=《由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结》 — 程序员成长记&source=前言最近在学JS,前几天看到两道题,刚开始看懵懵懂懂,这几天通过各种查资料,慢慢的理解,顿悟了,对匿名函数,闭包,立即执行函数的理解也更深了一点,在此分享..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/05/18/小程序实现长按删除功能/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">小程序实现长按删除功能</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/04/20/小丸子成长记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小丸子成长记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目一"><span class="post-toc-number">2.</span> <span class="post-toc-text">题目一</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#setTimeout事件"><span class="post-toc-number">3.</span> <span class="post-toc-text">setTimeout事件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题目二"><span class="post-toc-number">4.</span> <span class="post-toc-text">题目二</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域和作用域链"><span class="post-toc-number">5.</span> <span class="post-toc-text">作用域和作用域链</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包"><span class="post-toc-number">6.</span> <span class="post-toc-text">闭包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#匿名函数"><span class="post-toc-number">7.</span> <span class="post-toc-text">匿名函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#立即执行函数"><span class="post-toc-number">8.</span> <span class="post-toc-text">立即执行函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number"></span> <span class="post-toc-text">小结</span></a>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+</div>
+
+        <footer class="footer">
+    
+    <div class="top">
+        
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                欧阳铖 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/&title=《由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/04/23/由两道题扩展的对作用域-作用域链-闭包-立即执行函数-匿名函数的认识总结/&title=《由两道题扩展的对作用域,作用域链,闭包,立即执行函数,匿名函数的认识总结》 — 程序员成长记&source=前言最近在学JS,前几天看到两道题,刚开始看懵懵懂懂,这几天通过各种查资料,慢慢的理解,顿悟了,对匿名函数,闭包,立即执行函数的理解也更深了一点,在此分享..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEdUlEQVR42u3a2U7jQBAFUP7/pzOvSAzh3ioHpc3xE8ridB8jVdfy8RFfj0/X51e+vptfz38l+VZ7n+ffuuDChAkTJkxvyZQsa8b0fEsJWfLd/DG0DxgTJkyYMN2JKV9ojpiz5hE5X1vywJK9Y8KECROmv8mUc+QhOU+8N6CYMGHChAnTnukVR4E88M8+iQkTJkyY7s3U/vAGJSnatslq2+B8YS0cEyZMmDC9GdO1Bdaz/n7JfBMmTJgwYXobpkd55SXaPAD/Tkq8uTBhwoQJ07lMeYBsi6T7luQm2LcPNVotJkyYMGE6lqkt9W6Cd7KUIkiXv3hBYRcTJkyYMB3I1Kag+a333O2Q0Cw9rs9NmDBhwoTpEKbHy648PCcp6+wokx87flgnJkyYMGE6nGk/2pKH7Ta1nqXNm8T4P+9iwoQJE6ZjmRKgfNFterwv++5bocUnMWHChAnTsUzt+Mu+pDtrebYr3JeVh2cfTJgwYcL0ZkzPv5wEyw3BJrXer60+CmDChAkTpqOYZmG7TTX3x4i8sJsjFu1VTJgwYcJ0LFObNLaF4Ha5bYI9e0htexUTJkyYMJ3L9DwhbNuK+6ZjnbVfmjB/+0lMmDBhwnRTpllxdj/ok5Ml77Yl7B+GdTBhwoQJ01FM+djKpuw7C8azgnL+W6vSNiZMmDBhugXTPoltofMR1XyFeUm3SLYxYcKECdMhTLOx0TbJnB0m2kZpXjhu94UJEyZMmM5lenUwnpWGN2lqO+pal7MxYcKECdNRTG2DsC2Yzu7ZFn83g7DRkQITJkyYMB3OlI+cbpqg7ahNfkxpt90+QkyYMGHCdA+mtiA765puEuZ2vKYtLn/7ADBhwoQJ07FMeSOwTT7z6nLSHN1sdXgIaJ8AJkyYMGF6S6bkpvtwPivC5klynpznx4tvz02YMGHChOlApqsGd/Jg/LrH84odYcKECROm05nyFmA+LtMWgmfjPrOibX2kwIQJEyZMxzJdtfRZEfbaEJ680o4HYcKECROm05lyxTZUtyXd5Nc3fKuyLyZMmDBhOpwpbxwmG8iXlS86T6ExYcKECROmPNzmr2zKwbN8/aoUNz/6YMKECROmE5lmRdKcZpZgz8Z92gNNQYwJEyZMmI5lmm0sD6ttmjpbQ5K+5v8K9eAOJkyYMGF6Y6ZZSjlrPV57jIiC9+JoggkTJkyY7sc0axy2W9oE+ARlk9z+UCHAhAkTJkyHM0WdzzKfngXsNti3q63RMWHChAnTsUyzjeVDOe0wULvOzcrbfWHChAkTphOZHuXVNjjzlmE+lJMk4fl9kvVgwoQJE6ZzmTa5Xl6inW0jPzTMKGffxYQJEyZMJzLlrb5Z2vm8zNqOB7V325eeMWHChAnTPZiSQNuWUzet0GtLurOCNSZMmDBh+ptMeZNyNnbTFpdnzcv2AWPChAkTpr/DlKesV6XTOcqsiBwdXDBhwoQJ0+FMyZZmR4Q81ZyN3bRN0/bYgQkTJkyYTmdqE8VNY/L3DwRXPX5MmDBhwnQg0z9jofHzU+o2mQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.3.1"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "1b1b7066"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>

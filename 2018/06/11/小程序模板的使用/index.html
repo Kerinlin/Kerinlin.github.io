@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>小程序模板的使用 | 程序员成长记 | 记录成长的轨迹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"Kerinlin","repo":"git-comment","oauth":{"client_id":"0aa96b97b7762dde3151","client_secret":"4859e52ea910fa3b52ff03008b4907b80a5f453c"},"perPage":10}'),
+            d: JSON.parse('{"app_id":"1b1b7066"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">欧阳铖</h5>
+          <a href="mailto:1058789909@qq.com" title="1058789909@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>7</span>
+            
+              <span>8</span>
+            
+              <span>9</span>
+            
+              <span>9</span>
+            
+              <span>0</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/Kerinlin" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>小程序模板的使用</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">小程序模板的使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-10T19:07:48.000Z" itemprop="datePublished" class="page-time">
+  2018-06-11
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-小程序模板的使用"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">小程序模板的使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-11 03:07:48" datetime="2018-06-10T19:07:48.000Z"  itemprop="datePublished">2018-06-11</time>
+
+            
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2018/06/11/小程序模板的使用/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2018/06/11/小程序模板的使用/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="模板是什么？"><a href="#模板是什么？" class="headerlink" title="模板是什么？"></a>模板是什么？</h2><p>顾名思义，模板就是页面中可以套用的公共资源</p>
+<hr>
+<h2 id="有啥作用？"><a href="#有啥作用？" class="headerlink" title="有啥作用？"></a>有啥作用？</h2><p>减少重复代码，代码会更加简洁，不同的页面都可以使用模板，可以提升开发效率</p>
+<hr>
+<h2 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a>怎么使用？</h2><ul>
+<li>模板定义：使用name作为模板名字</li>
+</ul>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template name=<span class="string">"list-item"</span>&gt;</span><br><span class="line">......内容........</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>模板使用:使用is=”name”,声明需要的使用的模板，然后将模板所需要的data传入</li>
+</ul>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">template</span> <span class="keyword">is</span>=<span class="string">"list-item"</span> data=<span class="string">"&#123;&#123;...item&#125;&#125;"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>引用：<import src="目标路径"><br>  import有作用域概念，不能传递import.比如A中import B,B import C,这时A是不能使用C的</import></p>
+</li>
+<li><p>引用：<include src="目标路径">        </include></p>
+<p> 相当于直接拷贝模板中除template外的代码 </p>
+</li>
+</ul>
+<ul>
+<li>数据传入渲染<br> 使用…三个点展开数据</li>
+</ul>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;result&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-index</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;index&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"list-item"</span> <span class="attr">data</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;...item&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>可以通过在外部加入一个父级view使用for循环，输出所有数据，并且通过绑定index，可以对每个项目进行操作</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-10T19:08:19.211Z" itemprop="dateUpdated">2018-06-11 03:08:19</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/06/11/小程序模板的使用/" target="_blank" rel="external">http://yoursite.com/2018/06/11/小程序模板的使用/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="欧阳铖">
+            欧阳铖
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/11/小程序模板的使用/&title=《小程序模板的使用》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/11/小程序模板的使用/&title=《小程序模板的使用》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/07/31/大学回忆录/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">大学回忆录</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/06/11/小程序弹出菜单的实现/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小程序弹出菜单的实现</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模板是什么？"><span class="post-toc-number">1.</span> <span class="post-toc-text">模板是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有啥作用？"><span class="post-toc-number">2.</span> <span class="post-toc-text">有啥作用？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#怎么使用？"><span class="post-toc-number">3.</span> <span class="post-toc-text">怎么使用？</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+</div>
+
+        <footer class="footer">
+    
+    <div class="top">
+        
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                欧阳铖 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/11/小程序模板的使用/&title=《小程序模板的使用》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/11/小程序模板的使用/&title=《小程序模板的使用》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3a0W7jMAwEwPz/T7fAvR6a7pJuAMujp6JxZI0NMBLJ1yseX//G//95P366Ppnh9RcDAwPjtoxkutmykgfx/rsFFQMD4wGM90E2v+b9le0jS+6LgYGB0QblNnAnQRwDAwOjDbj51O0MH/3dwMDAuCEjD6b5Vi8Pr+/BF5/FMTAwbshoCwOf/PsP6xsYGBg3YXytRx4iN5/+sgYMDIyjGUlCfxbrNmXLNvWGgYHxBEZ7pJwl8ZNFzFJyGBgYz2EkN94sNEmZ5Wm16NFgYGAcwUiaumbbvhkvnwcDA+M5jOQwOUvWz5JxbWE12ttiYGDcnHFVM0QeQNtjcPQDgIGB8QDGpki5ac5oP8XAwHgyY1ba3KTPin1rsioMDIyjGW2abLZBzMsJeZkzeicYGBgHMTYdC5vUf9IiVreFYWBgHMrIb5MUDPZBsy0eYGBgnM3YH1NnsM3hOXoPGBgYBzGumnrTOjYrHlzQeIGBgXFDRt4qMdsytgG6benAwMA4m9Gmw65K1s/ay+o3gIGBcRwj35a1Rc1ZvSIvIWBgYJzNaAuW7aI/GaYxMDDOY2waTGeFz/aaKA2HgYFxNCMf+XZw35ax2XpiYGCcykiCbHuUnZUTVgEXAwPjAYw28OXgtoTZpt4wMDAw8qNmm76/6iiLgYGBMZu0/W7RVNFGbgwMjIMYeQCdpc/yg+6Qh4GBcTRjFpTbBrL2wbUPAgMD41DGN/AC2xklbbAMAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.3.1"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "1b1b7066"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>

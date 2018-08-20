@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>小程序折叠与展开文章的的实现 | 程序员成长记 | 记录成长的轨迹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"Kerinlin","repo":"git-comment","oauth":{"client_id":"0aa96b97b7762dde3151","client_secret":"4859e52ea910fa3b52ff03008b4907b80a5f453c"},"perPage":10}'),
+            d: JSON.parse('{"app_id":"1b1b7066"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">欧阳铖</h5>
+          <a href="mailto:1058789909@qq.com" title="1058789909@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>7</span>
+            
+              <span>8</span>
+            
+              <span>9</span>
+            
+              <span>9</span>
+            
+              <span>0</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/Kerinlin" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>小程序折叠与展开文章的的实现</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">小程序折叠与展开文章的的实现</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-10T15:57:57.000Z" itemprop="datePublished" class="page-time">
+  2018-06-10
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-小程序折叠与展开文章的的实现"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">小程序折叠与展开文章的的实现</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-10 23:57:57" datetime="2018-06-10T15:57:57.000Z"  itemprop="datePublished">2018-06-10</time>
+
+            
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2018/06/10/小程序折叠与展开文章的的实现/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2018/06/10/小程序折叠与展开文章的的实现/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p><strong>页面折叠超出的的部分显示省略号，点击展开后显示全部内容</strong></p>
+<figure class="image-box">
+                <img src="/2018/06/10/小程序折叠与展开文章的的实现/fold.gif" alt="" title="" class="">
+                <p></p>
+            </figure>
+<hr>
+<h2 id="需要解决的问题"><a href="#需要解决的问题" class="headerlink" title="需要解决的问题"></a>需要解决的问题</h2><ul>
+<li>箭头随展开折叠后箭头方向的变化</li>
+<li>当点击箭头文本显示内容的变化</li>
+</ul>
+<hr>
+<h2 id="如何解决？"><a href="#如何解决？" class="headerlink" title="如何解决？"></a>如何解决？</h2><ol>
+<li>箭头方向的变化是一个点击事件bindtap,点击后更换小图标；</li>
+<li>文本变化是一个show或者hide的事情，折叠的时候有个多行文本溢出得问题五个属性（<strong>display: -webkit-box，-webkit-box-orient: vertical， -webkit-line-clamp，text-overflow，overflow</strong>）</li>
+<li>状态与数据绑定控制样式</li>
+</ol>
+<hr>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>wxml<br><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">view</span> <span class="keyword">class</span>=<span class="string">"company-detail"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">view</span> <span class="keyword">class</span>=<span class="string">"company-detail-content"</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">view</span> <span class="keyword">class</span>=<span class="string">"weui-loadmore weui-loadmore_line"</span>&gt;</span><br><span class="line">            &lt;<span class="keyword">view</span> <span class="keyword">class</span>=<span class="string">"weui-loadmore__tips weui-loadmore__tips_in-line"</span>&gt;公司介绍&lt;/<span class="keyword">view</span>&gt;</span><br><span class="line">        &lt;/<span class="keyword">view</span>&gt;</span><br><span class="line">        &lt;<span class="keyword">view</span> <span class="keyword">class</span>=<span class="string">"long-dec &#123;&#123;isFold?'hide':'show'&#125;&#125;"</span>&gt;</span><br><span class="line">            &lt;text <span class="keyword">class</span>=<span class="string">"first-dec"</span>&gt;</span><br><span class="line">                创业是个失败概率很大的事情，我们很高兴从<span class="number">2012</span>底到现在还活着， 而且还活的很不错。 目前有赞旗下的产品有：有赞微商城、有赞收银、有赞零售、有赞美业、有赞批发、有赞买家版、有赞微小店.</span><br><span class="line">            &lt;/text&gt;</span><br><span class="line">            &lt;text <span class="keyword">class</span>=<span class="string">"second-dec"</span>&gt;</span><br><span class="line">                我们认为，相比较业务来说，团队才是公司的核心。有赞没有“员工”只有“小伙伴”，也没有人姓“公”名“司”，我们有一群聪明、有要性、又皮实的伙伴，这才是我们最大的资产。</span><br><span class="line">            &lt;/text&gt;</span><br><span class="line">            &lt;text <span class="keyword">class</span>=<span class="string">"last-dec"</span>&gt;</span><br><span class="line">                有赞的小伙伴目前已超过<span class="number">1000</span>人，工程师比例占<span class="number">55</span>%，我们有很浓的工程师氛围，每周都有很多的有意思的分享：有出国旅游的分享、有如何搭讪的分享、有如何装修房子的分享...技术分享更是数不胜数。 我们的工作不是很轻松，但我们的氛围很轻松，很<span class="keyword">open</span>，公司里随处可见骑着独轮车来回跑的工程师、懒人沙发、午睡吊篮、复古电话亭等等，每个月都有节日、新人表演、拓展、派对等，对我们来说，天天都可以是节日。我们倡导简单直接的沟通方式，希望做一家通透的公司。这里并没有过多的等级划分，你可以随时提出自己的意见和任何人PK。福利方面我们全额缴纳五险一金，每月<span class="number">980</span>元的有赞E卡鼓励大家一起吃喝玩乐。工程师标配MacBookPro、大屏显示器和机械键盘。办公室里常备零食、水果，休息区有电视、游戏机、桌球、乒乓球、四驱赛车、桌游随时供大家放松减压。每天晚下班的打车费报销，每年给你和你的家人提供旅游和体检等等。</span><br><span class="line">            &lt;/text&gt;</span><br><span class="line">        &lt;/<span class="keyword">view</span>&gt;</span><br><span class="line">        &lt;image <span class="keyword">class</span>=<span class="string">"arrow"</span> src=<span class="string">" &#123;&#123;isFold?'../../youzan-image/down.png':'../../youzan-image/up.png'&#125;&#125;"</span> bindtap=<span class="string">"showAll"</span>&gt;&lt;/image&gt;</span><br><span class="line">    &lt;/<span class="keyword">view</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">view</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>wxss</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.long-dec</span>&#123;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">20</span>rpx;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">87</span>rpx;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;<span class="comment">/*关键属性*/</span></span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">28</span>rpx;</span><br><span class="line">    <span class="attribute">color</span>:<span class="number">#cfcfd0</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">40</span>rpx;</span><br><span class="line">    <span class="attribute">word-break</span>: break-all;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;<span class="comment">/* 关键属性 */</span></span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>:<span class="number">6</span>;<span class="comment">/* 关键属性 */</span></span><br><span class="line">    <span class="attribute">overflow</span>: hidden;<span class="comment">/* 关键属性 */</span></span><br><span class="line">    <span class="attribute">text-overflow</span>:ellipsis;<span class="comment">/* 超出内容显示省略号*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.hide</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.show</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.arrow</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">40</span>rpx;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">43</span>rpx;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>js</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  <span class="keyword">data</span>: &#123;</span><br><span class="line">    isFold: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">showAll: function (e) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isFold: !<span class="keyword">this</span>.<span class="keyword">data</span>.isFold,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-10T15:59:46.476Z" itemprop="dateUpdated">2018-06-10 23:59:46</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/06/10/小程序折叠与展开文章的的实现/" target="_blank" rel="external">http://yoursite.com/2018/06/10/小程序折叠与展开文章的的实现/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="欧阳铖">
+            欧阳铖
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/10/小程序折叠与展开文章的的实现/&title=《小程序折叠与展开文章的的实现》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/10/小程序折叠与展开文章的的实现/&title=《小程序折叠与展开文章的的实现》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/06/11/小程序收藏功能实现/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">小程序收藏功能实现</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/05/18/小程序实现长按删除功能/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小程序实现长按删除功能</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需求"><span class="post-toc-number">1.</span> <span class="post-toc-text">需求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需要解决的问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">需要解决的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何解决？"><span class="post-toc-number">3.</span> <span class="post-toc-text">如何解决？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#具体实现"><span class="post-toc-number">4.</span> <span class="post-toc-text">具体实现</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+</div>
+
+        <footer class="footer">
+    
+    <div class="top">
+        
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                欧阳铖 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/10/小程序折叠与展开文章的的实现/&title=《小程序折叠与展开文章的的实现》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/10/小程序折叠与展开文章的的实现/&title=《小程序折叠与展开文章的的实现》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3aQW7CQAwFUO5/aSp1VakQ/vfMFFS9rFAIybxZxMb27RYf9+/j5+frM7/PP/v2+srrO2w78PDw8EZLf3ZcX3N9t+ttWvk2WTMeHh7eaV5yu3ZTWnAeWortw8PDw3sr79kD2sfnSTMeHh7e/+AlS0+WshI28PDw8D6BlxQjZi/9NjzkvM21Fjw8PLyYN2uAvffz8f4eHh4e3qirPmuM5c9KEus8GDy4Px4eHt4BXlt0aMsBSXNrPWV/8Vs8PDy8Y7z2Zd2OZ82uzMsWUWKNh4eHt8zLfzYrkuZl1rwYUaT1eHh4eAd4s8S3HTXIA1K+iUXYwMPDwzvGWykcJIz25X69hmIleHh4eFt5SQFib0liVgIebhweHh7eMd7e4mle1GifkuPx8PDw/p630hhrlzVLo6OkHw8PD+8AbzZ01bJnDbMknEQNNjw8PLzDvLapPwsSSRDKyxkvthUPDw9vK699uechIR8aaAsiefqOh4eHd4KXvGTbBDcJMLOiRlvawMPDwzvBm6XI+RbsKunmZx5UqfHw8PC28maRZFbAzcGzMYWiSo2Hh4e3lZffaPbgNhHPA0P0jwEPDw9vK2+llZWPBcxaYrPiCB4eHt45Xt5emg0WrLzc87LIi/Xj4eHhbeLdR0dOTcqsxRBAmXbj4eHhneCtX9q2ytoAMBtHwMPDwzvHyx+fn5+ly0lqXo8j4OHh4R3gzQYI8tGofDtmpeF8uAEPDw9vF+9EGSJpSuVhY6UlhoeHh3eC175827R7VvJo0+6VBh4eHh7ejNemy3nLKg8JyaYM14aHh4d3jNeOAuRbsz4W0IauB4EBDw8P72N4yZW7NiW5/9PJMjw8PLw38fKHtc2t9TtEnT08PDy8rby2GLHyct9VvCgCAx4eHt5W3tJf/Ri/UopdGeTCw8PD28r7Ahliu2Bt2mJGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.3.1"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "1b1b7066"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>

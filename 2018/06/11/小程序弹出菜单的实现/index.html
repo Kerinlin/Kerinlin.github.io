@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>小程序弹出菜单的实现 | 程序员成长记 | 记录成长的轨迹</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"Kerinlin","repo":"git-comment","oauth":{"client_id":"0aa96b97b7762dde3151","client_secret":"4859e52ea910fa3b52ff03008b4907b80a5f453c"},"perPage":10}'),
+            d: JSON.parse('{"app_id":"1b1b7066"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">欧阳铖</h5>
+          <a href="mailto:1058789909@qq.com" title="1058789909@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>0</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>7</span>
+            
+              <span>8</span>
+            
+              <span>9</span>
+            
+              <span>9</span>
+            
+              <span>0</span>
+            
+              <span>9</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/Kerinlin" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                HOME
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                CATEGORIES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                TAGS
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                ARCHIVES
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                CUSTOM
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>小程序弹出菜单的实现</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">小程序弹出菜单的实现</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-10T18:14:00.000Z" itemprop="datePublished" class="page-time">
+  2018-06-11
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-小程序弹出菜单的实现"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">小程序弹出菜单的实现</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-11 02:14:00" datetime="2018-06-10T18:14:00.000Z"  itemprop="datePublished">2018-06-11</time>
+
+            
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2018/06/11/小程序弹出菜单的实现/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2018/06/11/小程序弹出菜单的实现/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>点击标签栏按钮，向下弹出菜单，再次点击，收回菜单</p>
+<figure class="image-box">
+                <img src="/2018/06/11/小程序弹出菜单的实现/popMenu.gif" alt="" title="" class="">
+                <p></p>
+            </figure>
+<hr>
+<h2 id="要解决的问题"><a href="#要解决的问题" class="headerlink" title="要解决的问题"></a>要解决的问题</h2><ol>
+<li>标签栏三栏样式，标签栏固定不动；</li>
+<li>点击标签栏弹出菜单，并且出现透明遮罩；</li>
+<li>遮罩优先级在弹出框之下；</li>
+<li>弹出框内标签的设置；</li>
+<li>滚动栏滚动条的隐藏</li>
+</ol>
+<hr>
+<h2 id="如何解决？"><a href="#如何解决？" class="headerlink" title="如何解决？"></a>如何解决？</h2><ol>
+<li>弹性布局，横向，三者平分整栏;</li>
+<li>状态监听点击事件，数据控制hide或者show,通过rgba设置透明度</li>
+<li>弹出框设置z-index；</li>
+<li>弹性布局flex 横向排列 超出后wrap 然后space-around控制间距</li>
+<li>::-webkit-scrollbar {<br>width: 0;<br>height: 0;<br>color: transparent;<br>}</li>
+</ol>
+<hr>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>wxml</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">import</span> <span class="attr">src</span>=<span class="string">"../../templates/template"</span> /&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container </span></span></span><span class="template-variable">&#123;&#123;isMask?'mask':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"filterCity </span></span></span><span class="template-variable">&#123;&#123;status=='1' &amp;&amp; isActive?'active':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-status</span>=<span class="string">'1'</span> <span class="attr">bindtap</span>=<span class="string">"changeStatus"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"city"</span>&gt;</span>城市筛选<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;status=='1' &amp;&amp; isActive?'../../youzan-image/red-up.png':'../../youzan-image/down.png'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"filterJob </span></span></span><span class="template-variable">&#123;&#123;status=='2' &amp;&amp; isActive?'active':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-status</span>=<span class="string">'2'</span> <span class="attr">bindtap</span>=<span class="string">"changeStatus"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"job"</span>&gt;</span>职位筛选<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;status=='2' &amp;&amp; isActive?'../../youzan-image/red-up.png':'../../youzan-image/down.png'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"filterOrder </span></span></span><span class="template-variable">&#123;&#123;status=='3'&amp;&amp; isActive?'active':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-status</span>=<span class="string">'3'</span> <span class="attr">bindtap</span>=<span class="string">"changeStatus"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"order"</span>&gt;</span>排序方式<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;status=='3' &amp;&amp; isActive?'../../youzan-image/red-up.png':'../../youzan-image/down.png'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;isActive==true&amp;&amp;status=='1'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"cityContainer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;city&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"id"</span> <span class="attr">wx:for-index</span>=<span class="string">"index"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"city </span></span></span><span class="template-variable">&#123;&#123;isSelect&amp;&amp;index==curIndex?'<span class="keyword">select</span>':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-index</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;index&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"select"</span>&gt;</span></span><span class="template-variable">&#123;&#123;item&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;isActive==true&amp;&amp;status=='2'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">scroll-y</span>=<span class="string">"true"</span> <span class="attr">class</span>=<span class="string">"posContainer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;cur&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-index</span>=<span class="string">'index'</span> <span class="attr">wx:for-index</span>=<span class="string">'index'</span> <span class="attr">wx:key</span>=<span class="string">"index"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><span class="template-variable">&#123;&#123;item.title&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"poscontent"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">view</span>  <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;item.types&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">wx:for-item</span>=<span class="string">"type"</span> <span class="attr">wx:key</span>=<span class="string">'id'</span> <span class="attr">wx:for-index</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;index&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-index</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;index&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"tag </span></span></span><span class="template-variable">&#123;&#123;isSelect&amp;&amp;index==curIndex?'<span class="keyword">select</span>':''&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">data-id</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;id&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"multiSelect"</span>&gt;</span></span><span class="template-variable">&#123;&#123;type&#125;</span><span class="xml">&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"confirm"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"weui-btn"</span> <span class="attr">type</span>=<span class="string">"warn"</span>&gt;</span>确认<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;isActive==true&amp;&amp;status=='3'&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"orderContainer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"block"</span>&gt;</span>智能排序<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"block"</span>&gt;</span>时间排序<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"block"</span>&gt;</span>薪资排序<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"listContainer"</span>  &gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;jobList&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span> <span class="attr">data-index</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;index&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"list-item"</span> <span class="attr">data</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;...item&#125;</span><span class="xml"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"search "</span> <span class="attr">bindtap</span>=<span class="string">"search"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../../youzan-image/search.png"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">text</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>wxss</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">page</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#313131</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1</span>rpx solid <span class="number">#eeeeee</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">9999</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.filterCity</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.filterJob</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.filterOrder</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> <span class="selector-tag">image</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">15</span>rpx;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">26</span>rpx;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">30</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ef0001</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.mask</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(15, 15, 26, 0.3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.cityContainer</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">    <span class="attribute">align-items</span>: space-between;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300</span>rpx;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1</span>rpx solid <span class="number">#e9e9e9</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">130</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.cityContainer</span> <span class="selector-class">.city</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">100</span>rpx;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">150</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1</span>rpx solid <span class="number">#e9e9e9</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.select</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ed0000</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.posContainer</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">980</span>rpx;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="comment">/* overflow:auto; */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">::-webkit-scrollbar</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">55</span>rpx;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">28</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.poscontent</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">justify-content</span>: flex-start;</span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">15</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.tag</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">28</span>rpx;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">23</span>rpx;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">150</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1</span>rpx solid <span class="number">#e9e9e9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.confirm</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">150</span>rpx;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1</span>rpx solid transparent;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.weui-btn</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">95%</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">52</span>rpx;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-50%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.orderContainer</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">125</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.block</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">50</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1</span>rpx solid <span class="number">#e9e9e9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.search</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">80</span>rpx;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">25</span>rpx;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">150</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">75</span>rpx;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">75</span>rpx;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">35</span>rpx;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">1</span>rpx <span class="number">1</span>rpx <span class="number">7</span>rpx <span class="number">7</span>rpx <span class="number">#f5f5f5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.search</span> <span class="selector-tag">image</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30</span>rpx;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">30</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.search</span> <span class="selector-tag">text</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">9</span>rpx;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#666666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.listContainer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> category <span class="keyword">from</span> <span class="string">'../../api/employ'</span></span><br><span class="line"><span class="keyword">import</span> jobList <span class="keyword">from</span> <span class="string">'../../api/detail'</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    curIndex: <span class="string">''</span>,</span><br><span class="line">    isActive: <span class="literal">false</span>,</span><br><span class="line">    jobList:[],</span><br><span class="line">    cur: [],</span><br><span class="line">    job: [],</span><br><span class="line">    isShow: <span class="literal">true</span>,</span><br><span class="line">    status: <span class="number">0</span>,</span><br><span class="line">    isMask: <span class="literal">false</span>,</span><br><span class="line">    isSelect: <span class="literal">false</span>,</span><br><span class="line">    city: [<span class="string">'全国'</span>, <span class="string">'杭州'</span>, <span class="string">'北京'</span>, <span class="string">'深圳'</span>, <span class="string">'上海'</span>, <span class="string">'广州'</span>, <span class="string">'武汉'</span>, <span class="string">'重庆'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  changeStatus(e) &#123;</span><br><span class="line">    <span class="keyword">let</span> status = e.currentTarget.dataset.status;</span><br><span class="line">    <span class="keyword">let</span> cur = category;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isActive: !<span class="keyword">this</span>.data.isActive,</span><br><span class="line">      status: status,</span><br><span class="line">      isMask: !<span class="keyword">this</span>.data.isMask,</span><br><span class="line">      cur: cur,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  select(e) &#123;</span><br><span class="line">    <span class="keyword">let</span> curIndex = e.currentTarget.dataset.index;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isSelect: <span class="string">" curIndex == this.data.curIndex ? '!this.data.isActive' : 'true' "</span>,</span><br><span class="line">      isActive: <span class="literal">false</span>,</span><br><span class="line">      isMask:<span class="literal">false</span>,</span><br><span class="line">      curIndex: curIndex,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  multiSelect(e)&#123;</span><br><span class="line">   <span class="keyword">let</span>  multiIndex=e.currentTarget.dataset.index;</span><br><span class="line">   <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">     isSelect:!<span class="keyword">this</span>.data.isSelect,</span><br><span class="line">     curIndex:multiIndex</span><br><span class="line">   &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  search(e) &#123;</span><br><span class="line">    wx.navigateTo(&#123;</span><br><span class="line">      url: <span class="string">'../search/search'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      jobList:jobList</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  click:<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> id =e.currentTarget.dataset.id;</span><br><span class="line">    wx.navigateTo(&#123;</span><br><span class="line">      url: <span class="string">`../detail/detail?id=<span class="subst">$&#123;id&#125;</span>`</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-10T18:16:05.574Z" itemprop="dateUpdated">2018-06-11 02:16:05</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/06/11/小程序弹出菜单的实现/" target="_blank" rel="external">http://yoursite.com/2018/06/11/小程序弹出菜单的实现/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="欧阳铖">
+            欧阳铖
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/11/小程序弹出菜单的实现/&title=《小程序弹出菜单的实现》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/11/小程序弹出菜单的实现/&title=《小程序弹出菜单的实现》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2018/06/11/小程序模板的使用/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">小程序模板的使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2018/06/11/小程序收藏功能实现/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">小程序收藏功能实现</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需求"><span class="post-toc-number">1.</span> <span class="post-toc-text">需求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#要解决的问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">要解决的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何解决？"><span class="post-toc-number">3.</span> <span class="post-toc-text">如何解决？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#具体实现"><span class="post-toc-number">4.</span> <span class="post-toc-text">具体实现</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+</div>
+
+        <footer class="footer">
+    
+    <div class="top">
+        
+        
+            <p>
+    <span>Links：</span>
+    
+    <span class="blogroll-item">
+        <a href="https://www.lujingtao.com" target="_blank">HOME</a>
+    </span>
+    
+</p>
+
+        
+    </div>
+    
+    <div class="bottom">
+        <p>
+            <span>
+                欧阳铖 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/11/小程序弹出菜单的实现/&title=《小程序弹出菜单的实现》 — 程序员成长记&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/11/小程序弹出菜单的实现/&title=《小程序弹出菜单的实现》 — 程序员成长记&source=前端菜鸟" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3awU7DMBAEUP7/p4vECQk1nVkbRJ2XU5Wi4Bekwbvej4/4enxd3z//vPPs2/z+s5/ZdmFgYLwt43F5/Vxoy06ecP17IyoGBsYNGEnIXn9Onta+smRtGBgYGHXwBQHabkMxMDAwZoE7u5NvEzEwMDBmRWzeMtvbH9tci2NgYLwhY3Yw8Deff/18AwMD498zHqMrOZJM7uy6MDAwzmZcL2jXcWP7nKQMfvE4DAyMoxmzuJyNX8wabUW7DQMD4whGHnb55i/5dj2yn+5wMTAwjmO0i2jbZHkot8/BwMC4DyNZdP1WgiGJ2WDZizNYDAyMQxkrh5TrhW7SUKufjIGBcRwjKSl3HUyuF8AYGBh3ZiTbviRq14cq2gPUF/08DAyMIxjrx4dJTK8XtBt2uBgYGEcwkuPGWdN/Fs3ty8XAwLgDox2waMO6DfR2Y4qBgXE2I9/eta2xXaMVw78DBgbGEYy8+MxbabPiM/m2OBjAwMA4iLGhET8K0/Y3rpfQGBgY785IxlLzptvegbD8mAEDA+NujOuIbEkrcVxgMDAwjma0S8wbc+2wRbtVrcMXAwPjDRnrA6bthnLWyHsR0BgYGEcz8isvaGchnmwfh5NuGBgYRzCSkJ011NrFLQUuBgbGDRj5YWQ+opFk/Kx8xcDAwFjZUSZBmQR3HrsYGBgY7TFnPn7RBndRZ2NgYBzKSIrYOgTLgYm8eMbAwLgbY1cozzZ87Uv89f8tGBgY/4vxCVEJvCoZZAj/AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.3.1"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "1b1b7066"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>
